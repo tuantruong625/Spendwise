@@ -1,8 +1,8 @@
+import SignupPage from "./pages/SignUp"
+
 function App() {
   return (
-    <h1>
-      Spendwise
-    </h1>
+    <SignupPage />
   )
 }
 
