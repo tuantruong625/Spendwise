@@ -5,6 +5,7 @@ import { AuthContext } from './context/auth-context';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Dashboard } from './pages/Dashboard';
 import RequireAuth from './components/shared/RequiredAuth';
+import { LoginPage } from './pages/Login';
 
 function App() {
 	const { currentUser } = useContext(AuthContext);
@@ -28,6 +29,8 @@ function App() {
 					</Container>
 				}
 			/>
+
+			<Route path="login" element={<LoginPage />} />
 			<Route
 				path="dashboard"
 				element={

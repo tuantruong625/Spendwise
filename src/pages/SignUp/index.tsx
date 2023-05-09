@@ -1,8 +1,10 @@
-import Column from '../../components/shared/Column/Column';
-import Grid from '../../components/shared/Grid';
 import { useForm } from 'react-hook-form';
 import { signUpUser } from '../../firebase/firebase';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import Column from '../../components/shared/Column/Column';
+import Grid from '../../components/shared/Grid';
+import { EMAIL_VALIDATION } from '../../utils/regexPatterns';
 
 interface SignUpType {
 	email: string;
@@ -40,9 +42,6 @@ const SignUpPage: React.FC = () => {
 			console.log('User failed to signup', error);
 		}
 	};
-
-	const EMAIL_VALIDATION =
-		/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 	return (
 		<Grid cols={12} gap="1.5rem" style={{ height: '100vh' }}>
@@ -113,7 +112,7 @@ const SignUpPage: React.FC = () => {
 				</form>
 
 				<p>
-					Have an account?<a href="#">Login</a>
+					Have an account?<Link to="login">Login</Link>
 				</p>
 			</Column>
 		</Grid>
