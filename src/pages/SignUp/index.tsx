@@ -1,6 +1,8 @@
 import Column from '../../components/shared/Column/Column';
 import Grid from '../../components/shared/Grid';
 import { useForm } from 'react-hook-form';
+import { signUpUser } from '../../firebase/firebase';
+import { useNavigate } from 'react-router-dom';
 
 interface SignUpType {
 	email: string;
@@ -25,11 +27,20 @@ const SignUpPage: React.FC = () => {
 		},
 	});
 
-	console.log(watch('terms'));
+	const navigate = useNavigate();
 
-	const onSubmit = (data: SignUpType) => {
-		return console.log(data);
+	const onSubmit = async (data: SignUpType) => {
+		try {
+			const payload = await signUpUser(data.email, data.password);
+
+			if (payload) {
+				navigate('/dashboard');
+			}
+		} catch (error) {
+			console.log('User failed to signup', error);
+		}
 	};
+
 	const EMAIL_VALIDATION =
 		/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
