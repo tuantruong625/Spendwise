@@ -17,9 +17,7 @@ const SignUpPage: React.FC = () => {
 	const {
 		register,
 		handleSubmit,
-		watch,
-		setError,
-		formState: { errors, isValid },
+		formState: { errors },
 	} = useForm({
 		defaultValues: {
 			email: '',
