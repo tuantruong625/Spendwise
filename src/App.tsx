@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { Container } from './components/shared/Container';
+import { Container } from './components/shared/Layout/Container';
 import SignupPage from './pages/SignUp';
 import { AuthContext } from './context/auth-context';
 import { Routes, Route, useNavigate } from 'react-router-dom';

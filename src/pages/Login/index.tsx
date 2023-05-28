@@ -1,7 +1,19 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { signInUser } from '../../firebase/firebase';
+import { signInUser, signInAuth } from '../../firebase/firebase';
 import { EMAIL_VALIDATION } from '../../utils/regexPatterns';
+import Column from '../../components/shared/Layout/Column/Column';
+import Grid from '../../components/shared/Layout/Grid';
+import styled from 'styled-components';
+
+const StyledInput = styled.input`
+
+`
+
+const StyledLabel = styled.label`
+	display: flex;
+	flex-direction: column;
+`
 
 const LoginPage: React.FC = () => {
 	const {
@@ -24,12 +36,16 @@ const LoginPage: React.FC = () => {
 	};
 
 	return (
-		<>
-			<h1>LoginPage</h1>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<label htmlFor="email">
+		<Grid cols={12} gap="1.5rem" style={{ height: '100vh' }}>
+			<Column start={1} end={6} style={{ backgroundColor: '#e2e2e2' }} />
+			<Column start={7} end={12} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+				<h1>Login</h1>
+				<p>Welcome to Spendwise, to continue your journey sign in using google or your email.</p>
+				<button onClick={signInAuth}>Login using google</button>
+				<form onSubmit={handleSubmit(onSubmit)}>
+				<StyledLabel htmlFor="email">
 					Email
-					<input
+					<StyledInput
 						type="text"
 						{...register('email', {
 							required: 'Email is required',
@@ -39,18 +55,18 @@ const LoginPage: React.FC = () => {
 							},
 						})}
 					/>
-				</label>
+				</StyledLabel>
 				{errors.email && <p>{errors.email.message}</p>}
 
-				<label htmlFor="password">
+				<StyledLabel htmlFor="password">
 					Password
-					<input
+					<StyledInput
 						type="password"
 						{...register('password', {
 							required: 'Password is required',
 						})}
 					/>
-				</label>
+				</StyledLabel>
 				{errors.password && <p>{errors.password.message}</p>}
 
 				<button>Login</button>
@@ -59,7 +75,9 @@ const LoginPage: React.FC = () => {
 			<p>
 				Don't have an account? <Link to="/">Sign up</Link>
 			</p>
-		</>
+
+			</Column>
+		</Grid>
 	);
 };
 

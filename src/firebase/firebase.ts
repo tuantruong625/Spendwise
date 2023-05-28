@@ -7,7 +7,9 @@ import {
   signInWithEmailAndPassword,
   NextOrObserver,
   createUserWithEmailAndPassword,
-  User
+  User,
+  signInWithPopup,
+  GoogleAuthProvider
 } from 'firebase/auth';
 import { getFirebaseConfig } from './firebase-config';
 
@@ -21,6 +23,11 @@ export const signInUser = async (
   if (!email && !password) return;
 
   return await signInWithEmailAndPassword(auth, email, password)
+}
+
+export const signInAuth = async () => {
+  const provider = new GoogleAuthProvider()
+  return await signInWithPopup(auth, provider)
 }
 
 export const signUpUser = async (email: string, password: string) => {

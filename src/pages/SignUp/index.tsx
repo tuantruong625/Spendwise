@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import { signUpUser } from '../../firebase/firebase';
 import { Link, useNavigate } from 'react-router-dom';
 
-import Column from '../../components/shared/Column/Column';
-import Grid from '../../components/shared/Grid';
+import Column from '../../components/shared/Layout/Column/Column';
+import Grid from '../../components/shared/Layout/Grid';
 import { EMAIL_VALIDATION } from '../../utils/regexPatterns';
 
 interface SignUpType {
