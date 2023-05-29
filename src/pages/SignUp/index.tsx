@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Column from '../../components/shared/Layout/Column/Column';
 import Grid from '../../components/shared/Layout/Grid';
 import { EMAIL_VALIDATION } from '../../utils/regexPatterns';
+import Background from '../../assets/login-image.png';
 
 interface SignUpType {
 	email: string;
@@ -43,7 +44,7 @@ const SignUpPage: React.FC = () => {
 
 	return (
 		<Grid cols={12} gap="1.5rem" style={{ height: '100vh' }}>
-			<Column start={1} end={6} style={{ backgroundColor: '#e2e2e2' }} />
+			<Column start={1} end={6} style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
 			<Column start={7} end={12}>
 				<h1>Sign up</h1>
 				<p>

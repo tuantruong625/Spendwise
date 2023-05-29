@@ -6,6 +6,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Dashboard } from './pages/Dashboard';
 import RequireAuth from './components/shared/RequiredAuth';
 import { LoginPage } from './pages/Login';
+import './index.css'
 
 function App() {
 	const { currentUser } = useContext(AuthContext);
