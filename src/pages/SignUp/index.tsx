@@ -45,17 +45,20 @@ const SignUpPage: React.FC = () => {
 	return (
 		<Grid cols={12} gap="1.5rem" style={{ height: '100vh' }}>
 			<Column start={1} end={6} style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
-			<Column start={7} end={12}>
-				<h1>Sign up</h1>
-				<p>
-					Welcome to your expense tracker, to begin your journey sign up using
-					Google or your email.
-				</p>
-				<button>Sign up with Google</button>
-				<form onSubmit={handleSubmit(onSubmit)}>
-					<label htmlFor="email">
+			<Column start={8} end={4} className='flex flex-col justify-center'>
+				<div>
+				<h1 className='text-3xl font-bold p-0 m-0'>Sign up</h1>
+					<p>
+						Welcome to your expense tracker, to begin your journey sign up using
+						Google or your email.
+					</p>
+					</div>
+				<button className="w-full p-2 bg-slate-800 text-gray-100 my-5">Sign up with Google</button>
+				<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
+					<label htmlFor="email" className='flex flex-col my-2'>
 						Email
 						<input
+							className='border p-1'
 							type="text"
 							{...register('email', {
 								pattern: {
@@ -64,12 +67,13 @@ const SignUpPage: React.FC = () => {
 								},
 							})}
 						/>
+						{errors.email && <p className='text-gray-600 mt-1'>{errors.email.message}<sup className='text-red-500'>*</sup></p>}
 					</label>
-					{errors.email && <p>{errors.email.message}</p>}
 
-					<label htmlFor="password">
+					<label htmlFor="password" className='flex flex-col my-2'>
 						Password
 						<input
+							className='border p-1'
 							type="password"
 							{...register('password', {
 								required: 'Password is required',
@@ -84,20 +88,23 @@ const SignUpPage: React.FC = () => {
 								},
 							})}
 						/>
+						{errors.password && <p className='text-gray-600 mt-1'>{errors.password.message}<sup className='text-red-500'>*</sup></p>}
 					</label>
-					{errors.password && <p>{errors.password.message}</p>}
+					
 
-					<label htmlFor="username">
+					<label htmlFor="username" className='flex flex-col my-2'>
 						Username
 						<input
+							className='border p-1'
 							type="text"
 							{...register('username', { required: 'Username is required' })}
 						/>
 					</label>
 					{errors.username && <p>{errors.username.message}</p>}
 
-					<label htmlFor="terms">
+					<label htmlFor="terms" className='my-2'>
 						<input
+							className='mr-2'
 							type="checkbox"
 							{...register('terms', {
 								required: 'Please accept the terms and conditions',
@@ -107,11 +114,11 @@ const SignUpPage: React.FC = () => {
 					</label>
 					{errors.terms && <p>{errors.terms.message}</p>}
 
-					<button type="submit">Sign up</button>
+					<button className='p-2 border border-slate-500 my-5' type="submit">Sign up</button>
 				</form>
 
 				<p>
-					Have an account?<Link to="login">Login</Link>
+					Have an account? <Link className="hover:underline" to="login">Login</Link>
 				</p>
 			</Column>
 		</Grid>
