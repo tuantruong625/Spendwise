@@ -29,7 +29,7 @@ const SignUpPage: React.FC = () => {
 	});
 
 	const navigate = useNavigate();
-
+	
 	const onSubmit = async (data: SignUpType) => {
 		try {
 			const payload = await signUpUser(data.email, data.password);
@@ -52,29 +52,33 @@ const SignUpPage: React.FC = () => {
 						Welcome to your expense tracker, to begin your journey sign up using
 						Google or your email.
 					</p>
-					</div>
-				<button className="w-full p-2 bg-slate-800 text-gray-100 my-5">Sign up with Google</button>
+				</div>
+				<button className="w-full p-2 bg-slate-800 text-gray-100 my-5">Google</button>
 				<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
 					<label htmlFor="email" className='flex flex-col my-2'>
 						Email
 						<input
 							className='border p-1'
+							id="email"
 							type="text"
 							{...register('email', {
+								required: 'Email is required',
 								pattern: {
 									value: EMAIL_VALIDATION,
 									message: 'Invalid email, ex. email@gmail.com',
 								},
 							})}
 						/>
-						{errors.email && <p className='text-gray-600 mt-1'>{errors.email.message}<sup className='text-red-500'>*</sup></p>}
+						{errors.email && <p aria-label='email-error' className='text-gray-600 mt-1'>{errors.email.message}<sup className='text-red-500'>*</sup></p>}
 					</label>
 
 					<label htmlFor="password" className='flex flex-col my-2'>
 						Password
+					</label>
 						<input
 							className='border p-1'
 							type="password"
+							id="password"
 							{...register('password', {
 								required: 'Password is required',
 								minLength: {
@@ -84,18 +88,18 @@ const SignUpPage: React.FC = () => {
 								pattern: {
 									value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
 									message:
-										'Password must contain at least one uppercase letter, one lowercase letter, and one number',
+									'Password must contain at least one uppercase letter, one lowercase letter, and one number',
 								},
 							})}
-						/>
-						{errors.password && <p className='text-gray-600 mt-1'>{errors.password.message}<sup className='text-red-500'>*</sup></p>}
-					</label>
+							/>
+							{errors.password && <p className='text-gray-600 mt-1'>{errors.password.message}<sup className='text-red-500'>*</sup></p>}
 					
 
 					<label htmlFor="username" className='flex flex-col my-2'>
 						Username
 						<input
 							className='border p-1'
+							id="username"
 							type="text"
 							{...register('username', { required: 'Username is required' })}
 						/>
@@ -104,6 +108,7 @@ const SignUpPage: React.FC = () => {
 
 					<label htmlFor="terms" className='my-2'>
 						<input
+							id="terms"
 							className='mr-2'
 							type="checkbox"
 							{...register('terms', {
